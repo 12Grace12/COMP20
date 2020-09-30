@@ -1,0 +1,85 @@
+.section {
+    padding: 40px 0;
+    margin-top: 100px;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px black;
+    font-size: 20px;
+    
+
+  }
+  
+  
+  .section h1 {
+    text-align: center;
+    padding: 5px;
+    background-color:teal;
+  }
+
+  .section p {
+    text-align: center;
+    padding: 5px;
+    background-color: teal;
+    
+  }
+  
+  .contact-border {
+    width: 100px;
+    height: 4px;
+    background: #687691;
+    margin: 20px auto;
+  }
+  
+  .contact-form {
+    max-width: 600px;
+    margin: auto;
+    padding: 0px 10px;
+    overflow: hidden;
+  }
+  
+  .contact-text {
+    display: block;
+    width: 100%;
+    margin: 16px 0;
+    border: 0;
+    background: rgb(255, 255, 255);
+    padding: 20px 40px;
+    outline: none;
+    color: #687691;
+    transition: 0.5s;
+  }
+  
+  .contact-text:focus{
+    box-shadow: 0 0 10px 4px #687691;
+    background: rgb(226, 226, 226);
+    opacity: 0.9;
+  }
+  
+  textarea.contact-text{
+    resize: none;
+    height: 120px;
+  }
+  
+  .contact-btn{
+    float: right;
+    border: 0;
+    background: teal;
+    color:white;
+    padding: 12px 50px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+
+  .notif-form ::placeholder{
+    color: white;
+  }
+  .contact-btn:hover{
+    background: black;
+  }
+
+  ::placeholder {
+    color: black;
+    opacity: 1; 
+    font-size: 15px;
+  }

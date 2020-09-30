@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="contact.css">
+  <title>Contact Page</title>
+  <style type="text/css">
+    a {
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+    }
+</style>
+</head>
+
+<body>
+  <nav>
+    <div class="logo">
+      <img src="images/icepenguin.png" alt="Logo" width="100" height="100">
+    </div>
+
+  <div class="logo_title">
+    <div> Ice Ice Baby</div>   
+</div>
+    <div class="hamburger">
+      <label for="toggle">&#9776;</label>
+      <input type="checkbox" id="toggle"/>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a class="current" href="contact.html">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <div class="section">
+    <h1>Have A Question?</h1>
+    <P>You can find us at any of our locations in Pawtucket, RI, Boston, MA, or Los Angeles, CA or keep in contact below. </P>
+    <div class="contact-border"></div>
+    <form class="contact-form" action="contact.html" method="post">
+      <input type="text" class="contact-text" placeholder="Your Name: ">
+      <input type="text" class="contact-text" placeholder="Email: ">
+      <input type="text" class="contact-text" placeholder="Phone Number: ">
+      <textarea class="contact-text" placeholder="Message: "></textarea>
+      <input type="submit" class="contact-btn" value="Send">
+    </form>
+  </div>
+
+  <footer>
+    <div class="footer-container">
+
+      <div class="footer-left">
+        <img src="images/icepenguin.png" class="logo-footer">
+        <div class="social-media">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p class="copyright">© 2020 Created Ice Ice Baby All Rights Reserved </p>
+      </div>
+
+
+      <div class="footer-right">
+        <img src="images/Ice_Cream_Scoop.png" class="logo-footer" alt="logo">
+        <h1>Get The Latest Scoop!</h1>
+        <div class="border"></div>
+        <p>Get notifications and updates about our newly released flavors!</p>
+        <form action="" class="notif-form">
+          <input type="text" class="text" placeholder="Email">
+          <input type="submit" class="btn" value="Submit">
+        </form>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
