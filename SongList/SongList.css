@@ -1,0 +1,67 @@
+@charset "utf-8";
+/* CSS Style Document */
+
+playlist {
+    display:block;
+    background-color: #000000;
+    font-family: fantasy;
+    width: 70%;
+    margin: 5% 15% 10% 15%;
+    background-image: url(https://images-na.ssl-images-amazon.com/images/I/81DnkmWlKVL._AC_SL1500_.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+   
+
+}
+
+song {
+    display: block;
+    margin: 15px;
+    text-align: center;
+    border: 5px solid rgb(255, 255, 255);
+    background: -webkit-linear-gradient(rgb(252, 249, 249), black);
+    
+}
+
+title {
+    display: block;
+    font-weight: bold;
+    text-align: center;
+    font-size: 20px;
+    color: #5fa3f1;
+}
+
+big_header {
+    display: block;
+    font-weight: bold;
+    text-align: center;
+    font-size: 50px;
+    color: #ffffff;
+}
+
+author {
+    display: block;
+    font-weight: bold;
+    text-align: center;
+    font-size: 30px;
+    color: #ffffff;
+}
+       
+
+artist {
+    display: block;
+    text-align: center;
+}
+        artist:before{content:"Artist:"; color:#dadada;}
+
+
+genre {
+    display: block;
+}
+        genre:before{content:"Genre:"; color: #dadada;}
+
+        
+year {
+    display: block;
+}
+        year:before{content:"Year:"; color: #dadada;}
