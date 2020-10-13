@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Quick Pick</title>
+        <style>
+            .tostyle { display: block; font-size: 30px; padding: 5px; margin: 10px; font-size: 24px; }
+           
+            h2 {font-size: 30px;  border: 20px;}
+            body {
+                background: url(https://www.txlottery.org/export/sites/lottery/Games/Scratch_Offs/luckzone/images/background_luckzone.png);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+
+            
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2><b>Welcome to the Massachusetts QuickPick Lottery!</b></Welcome></h2>
+        <div class="tostyle">
+        <script language="javascript">
+
+        function randomNum(max) {
+            return Math.floor(Math.random() * Math.floor(max));
+        }
+        
+        //------ empty array of numbers----------
+        var numbers = []; 
+        
+        //----- store random 5 numbers in array---
+        for (var i = 0; i < 5; i++) {
+            numbers[i] = randomNum(48) + 1; 
+        }
+
+        //----- store random lucky number in separate variable---
+        var luckynumber = randomNum(18) + 1;
+        
+        //-----sort numbers in order--------
+        numbers.sort( function(a, b) { return a - b } ); 
+        
+        //-----Shows players QuickPick's number--------
+        var txt1 = "Your QuickPick numbers:"  
+        document.write(txt1.bold()+ "<br>");
+        for (var i = 0; i < 5; i++) {
+            document.write( numbers[i] + " ");
+
+        }
+
+        document.write("<br><br>") 
+        var txt2 = "QuickPick lucky ball:"
+
+        //-----Shows the Lucky number-----------------
+        document.write(txt2.bold()+  "<br>" + luckynumber + "<br><br>")
+
+        //--------Asks player for input---------------
+        var guesses_num = prompt("Enter in winning numbers separated by a space");
+        var guess_lucky = prompt("Enter in lucky ball number");
+
+        var matchings = 0;
+
+        //--------splits array into substring---------------
+        var split_nums = guesses_num.split(" ");         
+
+        var guesses_sorted = split_nums.sort( function(a, b) {return a - b} );
+
+
+        //------check number of matchings-------------------
+        for (var i = 0; i < guesses_sorted.length; i++) {
+            for(var j = 0; j < 5; j++)
+            {
+                if (guesses_sorted[i] == numbers[j] )
+                    matchings++;
+
+            }
+        }
+
+
+        //------check if lucky ball matchings-------------------
+        if ( luckynumber == guess_lucky) {
+            matchings += 0.5;
+        }
+                
+        var outcome;
+
+        //------lottery outcomes---------------------------
+        switch(matchings)
+        {
+            case 5.5: outcome = "$7,000 a WEEK for LIFE"; break;
+            case 5: outcome = "$25,000 a YEAR for LIFE"; break;
+            case 4.5: outcome = "$5,000"; break;
+            case 4: outcome = "$200"; break;
+            case 3.5: outcome = "$150"; break;
+            case 3: outcome = "$20"; break;
+            case 2.5: outcome = "$25"; break;
+            case 2: outcome = "$3"; break;
+            case 1.5: outcome = "$6"; break;
+            case 0.5: outcome = "$4"; break;
+            default: outcome = ""; break;
+        }
+        
+        //------shows the winning numbers-------------------------------
+        var txt3 = "Winning Numbers: "
+        var txt4 = "Winning lucky ball number: "
+        var txt5 = "Your Payout: "
+        var txt6 = "Results: "
+        document.write(txt3.bold()+"<br>" + guesses_sorted[0] + " " + guesses_sorted[1] + " " + guesses_sorted[2] + " " + guesses_sorted[3] + " " + guesses_sorted[4] + "<br><br>");
+        document.write(txt4.bold()+"<br>" + guess_lucky + " <br><br>");
+        
+
+        //-------Find out whether you won or not---------------------------
+        if(outcome != "")
+            document.write("You WINNN! " + txt5.bold() + outcome);
+        else 
+            document.write(txt6.bold()+ "You do not win anything, TRY AGAIN!");
+
+        </script>
+        </div>
+    </body>
+</html>
