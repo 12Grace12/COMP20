@@ -1,0 +1,164 @@
+<!---- URL: https://12grace12.github.io/COMP20/AmicableNumbers/AmicableNumbers.html ---->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <title>Amicable Numbers</title>
+
+
+        <!-- --------- css styling-------------- -->
+        <style>
+            * {
+                font-family: 'Poppins';
+                text-align: center;
+              }
+
+            h2 {font-size: 30px;  border: 20px; text-align: center;}
+            h4 {text-align: center;}
+
+            form { 
+                margin: 0 auto; 
+                width:600px;
+            }
+
+            .form-group {
+                width: 600px;
+                text-align: center;
+              
+
+            }
+            body {
+                background: url(https://lh3.googleusercontent.com/proxy/0wMCl8-ccsILYhE4uHiUmhLfmERfkXpxmVx9fZnW8ja9oBNMYbI8BaRFwaQt96w23oJig254SNZAX-HLN3bqRRcRaVQTlF81coDnf0q85mSwgJ71FHG0XTVvr0Qz7EhxY1FGjHH3ZFeuLxiSlRSvor9ll2tlPhg);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2 >Welcome to the Amicable Number Checker!</h2>
+        <h4>Enter two numbers and see how amicable they really are!</h4>
+
+        <!-- //--------- sets up input boxes and button to submit user entry--------------  -->
+        <form>
+            <div class="form-group">
+              <label for="num1">First Number:</label>
+              <input type="text" class="form-control" id="num1" size="12" name="num1" placeholder="Enter a number:">
+            </div>
+            <div class="form-group">
+              <label for="num2">Second Number:</label>
+              <input type="text" class="form-control" id="num2" size="12" name="num2" placeholder="Enter a number:" >
+            </div>
+            <button type="button" class="btn btn-primary" id="button">Check Numbers</button>
+          </form>
+          <div id="show_numbers"></div>
+
+        <script language="javascript">
+            document.getElementById("button").addEventListener("click", isAmicable)
+
+            // checks if a inputted number and a specified factor are factors of each other
+            function isFactor(number, factor){
+                if (number % factor == 0){
+                    return true;       
+                    } else {
+                        return false;
+                    }
+            }
+            //------ testing isFactor function---
+            /*
+            var test1 = isFactor(24, 6)
+            var test2 = isFactor(36, 7)
+            if (test1) {
+                document.write("True")
+            } 
+            else {
+                document.write("False")
+                }
+            */
+
+
+            // prints out passed in array 
+            function showArray(arr){
+                for (i = 0; i < arr.length; i++){
+                    document.write(arr[i] + " ");
+                }
+            }
+
+            //------testing showArray function------
+            /*
+            var test_array = [1, 2, 3, 4]
+            showArray(test_array);
+            */
+            
+            
+            // sums up all numbers in array
+            function addArray(arr){
+                var total = 0;
+                for (j = 0; j < arr.length; j++){
+                    total += parseInt(arr[j]);
+                }
+                return total;
+            }
+            
+          //--------testing addArray function---------
+          /*
+            var test_array = [1, 2, 3, 4]
+            showArray(test_array)
+            var sum = addArray(test_array)
+            document.getElementById("show_numbers").innerHTML += "<br> Sum of test array: " + sum
+          */
+        
+
+            // takes in number and return all possible factors
+            function getFactors(number){
+                var possiblefactorsList = []
+                for (i = 1; i < number; i++) {
+                    if(isFactor(number, i)) {
+                        possiblefactorsList.push(i)
+                    }
+                } 
+                return possiblefactorsList
+            }
+
+            //-------testing getFactors function----------
+            /*
+            showArray(getFactors(220));
+            showArray(getFactors(284));
+            */
+
+            // uses above functions to check if the sum of num1 factors equal the num2 and vice versa
+            function isAmicable(){
+                var number1 = document.getElementById('num1').value;
+                var number2 = document.getElementById('num2').value;
+
+                var num1_factors = getFactors(number1);
+                var num2_factors = getFactors(number2);
+
+                num1_sum = addArray(num1_factors);
+                num2_sum = addArray(num2_factors);
+
+
+                // Displays to page the result of the two numbers
+                if ((num1_sum == number2) && (num2_sum == number1)){
+                    document.getElementById("show_numbers").innerHTML = "<br> First Number's Factors: <b>" + num1_factors + "</b>  <br> Second Number's Factors: <b>" + num2_factors + "</b>" 
+                     
+                    alert("Yes, your numbers are very AMICABLE!");
+                    
+                }
+
+                else{
+                    document.getElementById("show_numbers").innerHTML = "<br> First Number's Factors: <b>" + num1_factors + "</b>  <br> Second Number's Factors: <b>" + num2_factors + "</b>" 
+                    alert("No, your numbers are NOT AMICABLE! Try another pair!");
+                    
+                }
+            }
+        </script>
+
+    </body>
+   
+</html>
