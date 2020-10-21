@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <title>SWITCH-ER-OO</title>
+
+        <!-- css styling -->
+    <style>
+
+        body 
+        {
+            background:url(https://i.imgur.com/0AXliCu.png);
+            background-repeat: no-repeat;
+            background-size: cover;  
+        }
+
+        input
+        {
+            -moz-border-radius: 40px;
+            border-radius: 40px;
+            border:solid 1px black;
+            padding:5px;
+        }
+
+        form {
+            font-family: Poppins;
+            font-size: 25px;
+            text-align: center;
+        }
+
+        #text1 {
+            height: 50px;
+            font-size: 20px;
+            background-color: rgb(247, 107, 97);
+            border: 5px solid rgb(88, 3, 3);
+        }
+        
+        #text2 {
+            height: 50px;
+            font-size: 20px;
+            background-color: rgb(131, 220, 255);
+            border: 5px solid rgb(2, 9, 70);
+        }
+
+        #button {
+            width: 60px;
+            font-size: 20px;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 10px;   
+        }
+
+        .header {
+            text-align: center;
+            font-family: Poppins;
+            font-size: 60px;
+            color: rgb(0, 0, 0);
+            padding-top: 30px;
+        }
+
+        /* ::placeholder {
+        color: black;
+        font-size: 20px;
+        } */
+    </style>
+ </head>
+
+    <body>
+        <div class="header"> SWITCH-ER-OO!</div>
+
+        <form>
+            <input type="text" id="text1" name="text1" placeholder="Enter text here:"> 
+            <input type="button" id="button" value="⮕"> 
+            <input type="text" id="text2" name="text2" placeholder="Enter text here:">
+        </form>
+
+        <script>
+            document.getElementById("button").addEventListener("click", switchtext)
+
+            // swaps values, empties the first input and replaces it in the second input box
+            function switchtext () {
+                if (this.value == "⮕") {
+                    this.value = "⬅"
+
+                    var input1 = document.getElementById("text1").value
+
+                    document.getElementById("text1").value = ""
+                    document.getElementById("text2").value = input1
+                } 
+
+                else {
+                    this.value = "⮕"
+                    var input2 = document.getElementById("text2").value
+                    
+                    document.getElementById("text2").value = ""
+                    document.getElementById("text1").value = input2
+                }
+
+            }
+        </script>
+        
+    </body>
+</html>
