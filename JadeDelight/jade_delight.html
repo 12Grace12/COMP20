@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<title>Jade Delight</title>
+</head>
+<style>
+	td{
+		padding-left: 22px;
+		
+	}
+
+	th{
+		padding-left: 20px;
+		
+	}
+
+	form{
+		margin: 40px;
+	}
+
+		
+	body{
+		margin: 10px;
+		background-image: url("https://i.pinimg.com/originals/53/2e/f5/532ef5adb18b86509144a1ab7ed9e33a.jpg");
+		background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+		font-weight: 600;
+	
+	}
+
+	h1{
+		font-family: Snell Roundhand, cursive;
+		font-size: 50px;
+		position: relative;
+		top: 0px;
+		left: 20px;
+		
+	}
+	.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+		border-color: rgb(209, 195, 151);
+		background-color: #000000;
+		}
+	
+</style>
+
+<body onload="clear_item_cost()">
+<script language="javascript">
+	function MenuItem(name, cost)
+	{
+		this.name = name;
+		this.cost=cost;
+	}
+
+	menuItems = new Array(
+		new MenuItem("Chicken Chop Suey", 4.5),
+		new MenuItem("Sweet and Sour Pork", 6.25),
+		new MenuItem("Shrimp Lo Mein", 5.25),
+		new MenuItem("Moo Shi Chicken", 6.5),
+		new MenuItem("Fried Rice", 2.35)
+	);
+
+	function makeSelect(name, minRange, maxRange)
+	{
+		var t= "";
+		t = "<select name='" + name + "' size='1' onchange='showPrice(this.value, this.name)'>";
+		for (j=minRange; j<=maxRange; j++)
+			t += "<option>" + j + "</option>";
+		t+= "</select>";
+		return t;
+	}
+
+</script>
+
+<h1>Jade Delight</h1>
+
+<form onsubmit ="return order_confirmation()">
+<p>First Name: <input type="text"  name='fname'/></p>
+<p>Last Name*:  <input type="text"  name='lname'/><span id="lastname_error" style="padding-left: 2em; color: rgb(165, 33, 66);"></span></p>
+<p>Street: <input type="text"  name='street'/><span id="street_error" style="padding-left: 2em; color:  rgb(165, 33, 66);"></span></p>
+<p>City: <input type="text"  name='city'/><span id="city_error" style="padding-left: 2em; color:  rgb(165, 33, 66);"></span></p>
+<p>Phone*: <input type="text"  name='phone'/><span id="phone_error" style="padding-left: 2em; color:  rgb(165, 33, 66);"> Phone Number Form: XXX-XXX-XXXX</span></p>
+<p> 
+	<input type="radio"  name="p_or_d" value = "pickup" checked="checked"/>Pickup  
+	<input type="radio"  name='p_or_d' value = 'delivery'/>Delivery
+</p>
+
+<table border="0" cellpadding="3">
+  <tr>
+    <th>Select Item</th>
+    <th>Item Name</th>
+    <th>Cost Each</th>
+    <th>Total Cost</th>
+  </tr>
+
+<script language="javascript">
+  var s = "";
+  for (i=0; i< menuItems.length; i++)
+  {
+	  s += "<tr><td>";
+	  s += makeSelect("quan" + i, 0, 10);
+	  s += "</td><td>" + menuItems[i].name + "</td>";
+	  s += "<td> $ " + menuItems[i].cost.toFixed(2) + "</td>";
+	  s += "<td>$<input type='text' name='cost'/></td></tr>";
+  }
+  document.writeln(s);
+</script>
+
+
+<script language="javascript">
+	function clear_item_cost() {
+		cleared = 00;
+		
+        for(i = 0; i < menuItems.length; i++) 
+        {
+			document.getElementsByName('cost')[i].value = cleared.toFixed(2);
+		}
+		document.getElementsByName('subtotal')[0].value = cleared.toFixed(2);
+		document.getElementsByName('tax')[0].value = cleared.toFixed(2);
+		document.getElementsByName('total')[0].value = cleared.toFixed(2);
+	}
+
+    //-----------------------------------------------------------------------------
+
+	function showPrice(AMOUNT, item_selection) {
+		
+		item_row = item_selection[item_selection.length-1];
+
+		item_price = menuItems[item_row].cost * AMOUNT;
+		document.getElementsByName('cost')[item_row].value = item_price.toFixed(2);
+		var foodtotal = 0;
+
+		for (i = 0; i < menuItems.length; i++) 
+		{
+			item_cost = document.getElementsByName('cost')[i].value;
+			foodtotal += parseFloat(item_cost);
+		}
+
+		document.getElementById("subtotal").value = foodtotal.toFixed(2); 
+		document.getElementById("tax").value = (foodtotal * .0625).toFixed(2); 
+		document.getElementById("total").value = (foodtotal * 1.0625).toFixed(2); 
+	}
+
+    //-----------------------------------------------------------------------------
+
+	function validLName() {
+		check_lastname = document.getElementsByName("lname")[0].value;
+		check_lastname = check_lastname.replace(/^\s+|\s+$/g, '');
+
+        // Check 1: checks if user put in a last name
+		if (check_lastname == "") {
+			document.getElementById("lastname_error").innerHTML =  "* Last name is REQUIRED!" ;
+			return false;
+		}
+
+        // Check 2: checks user input to make sure only valid letters were inputted in name
+		for (i = 0; i < check_lastname.length; i++) {
+			if (!isNaN(check_lastname[i])) 
+            {
+				document.getElementById("lastname_error").innerHTML = "* Please enter ONLY valid alphabetic letters for name!";
+				return false;
+			}
+		}
+		// Check 3: If no input will throw an error
+		document.getElementById("lastname_error").innerHTML = null;
+		return true;
+	}
+    //-----------------------------------------------------------------------------
+
+	function validPhone() {
+        phoneNumber = document.getElementsByName("phone")[0].value;
+
+		// Check 1: checks if user put in a phone number 
+		if (phoneNumber == ""){
+			document.getElementById("phone_error").innerHTML = "* Phone Number is REQUIRED!";
+			return false;
+		}
+
+		// Check 2: checks each number in phone number and makes sure they are valid numbers
+		arr = phoneNumber.split("-");
+		for (i = 0; i < arr.length; i++)
+		{
+			if ( isNaN(arr[i])) {
+				document.getElementById("phone_error").innerHTML = "* Please enter ONLY valid numbers (0-9) for phone number!" ;
+				return false;
+			}
+		}
+
+		// Check 3: checks if it is in correct phone number form
+		if (phoneNumber.length != 12 || phoneNumber[3] != "-" || phoneNumber[7] != "-") {
+			document.getElementById("phone_error").innerHTML = "* Your Phone Number needs to be in this form: XXX-XXX-XXXX" ;
+			return false;
+		}
+
+		//Check 4: If no input will throw an error
+		document.getElementById("phone_error").innerHTML = null;
+		return true;
+	}
+    //-----------------------------------------------------------------------------
+
+	function validAddress() {
+        check_address = document.getElementsByName('street')[0].value;
+
+        // Check 1: checks if user put in a street address
+		if (check_address == "") 
+        {
+			document.getElementById("street_error").innerHTML =  "* Street Addresss is REQUIRED for delivery!";
+			return false;
+		}
+		// Check 2: If no input will throw an error
+		document.getElementById("street_error").innerHTML = null;
+		return true;
+	}
+    //-----------------------------------------------------------------------------
+
+	function validCity() {
+		check_city = document.getElementsByName('city')[0].value;
+        // Check 1: checks if user put in a city 
+		if (check_city == "") {
+			document.getElementById("city_error").innerHTML = "* City is REQUIRED for delivery!";
+			return false;
+		}
+		// Check 2: If no input will throw an error
+		document.getElementById("city_error").innerHTML = null;
+		return true;
+	}
+
+    //-----------------------------------------------------------------------------
+
+	date = new Date();
+	var minutes = date.getMinutes();
+	var hour = date.getHours();
+
+	function order_confirmation() {
+        // if pick up, checks for lastname and phone number input
+		if (document.getElementsByName("p_or_d")[0].checked) {
+			check_ln = validLName();
+			check_p = validPhone();
+
+            // adds order time calc 15 min from order
+			if (check_ln && check_p) {
+				minutes = minutes + 15;
+			} 
+            else {
+				return false;
+			}
+		}
+
+        // if delivery, checks for lastname, phone number, city, and street address input
+		if (document.getElementsByName("p_or_d")[1].checked) {
+			check_ln = validLName();
+			check_p = validPhone();
+			check_a = validAddress();
+			check_c = validCity();
+
+            // adds order time calc 30 min from order
+			if (check_ln  && check_p && check_a && check_c ) 
+            {
+				minutes = minutes + 30;
+			} 
+            else 
+            {
+				return false;
+			}
+		}
+
+        // time conversions
+		if (minutes >= 60) 
+        {
+			minutes = minutes - 60;
+			hour++;
+
+			if (hour == 24) {
+				hour = 0;
+			}
+		}
+
+		x = ("0" + hour).slice(-2);
+		y = ("0" + minutes).slice(-2);
+
+		estimated_time = x + ":" + y;
+
+		if (document.getElementsByName("p_or_d")[0].checked) {
+			alert("Your order has been submitted. It will be ready for pick up at " + estimated_time + " and will cost $" + document.getElementsByName("total")[0].value + ".");
+			return true;
+		} 
+
+		if (document.getElementsByName("p_or_d")[1].checked) {
+			alert("Your order has been submitted. It will be delivered at " + estimated_time + " and will cost $" + document.getElementsByName("total")[0].value + ".");
+			return true;
+		}
+	}
+
+</script>
+
+
+</table>
+<p>
+	Subtotal: $<input type="text"  name='subtotal' id="subtotal" />
+</p>
+<p>
+	Mass tax 6.25%: $<input type="text"  name='tax' id="tax" />
+</p>
+<p>
+	Total: $<input type="text"  name='total' id="total" />
+</p>
+
+
+<button type="submit" class="btn btn-primary" id="button" >Submit Order</button>
+
+  
+</form>
+</body>
+</html>
