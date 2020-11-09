@@ -1,0 +1,71 @@
+[
+    {
+        "artist" : "Burna Boy",
+        "title" : "Ye",
+        "genre" : ["Afrobeat"],
+        "year": 2018
+    },
+    
+    {
+        "artist" : "Wizkid",
+        "title" : "Caro",
+        "genre" : ["Afrobeat"],
+        "year" : 2013
+    },
+    
+    {
+        "artist" : "Don Toliver",
+        "title" : "Lemonade",
+        "genre" : ["Hip-Hop", "Rap"],
+        "year" : 2020
+    },
+    
+    {
+        "artist" : "Kendrick Lamar",
+        "title" : "Money Trees",
+        "genre" : ["Hip-Hop", "Rap"],
+        "year" : 2012
+    },
+    
+    {
+        "artist" : "Rema",
+        "title" : "Woman",
+        "genre" : ["Afrobeat"],
+        "year" : 2020
+    },
+    
+    {
+        "artist" : "Michael Jackson",
+        "title" : "Human Nature",
+        "genre" : ["Pop"],
+        "year" : 1982
+    },
+    
+    {
+        "artist" : "Darkoo",
+        "title" : "Gangsta",
+        "genre" : ["Hip-Hop", "Rap", "Afrobeat"],
+        "year" : 2019
+    },
+    
+    {
+        "artist" : "Megan Thee Stallion",
+        "title" : "Captain Hook",
+        "genre" : ["Hip-Hop", "Trap"],
+        "year" : 2020
+    },
+    
+    {
+        "artist" : "Lauryn Hill",
+        "title" : "Doo Wop (That Thing)",
+        "genre" : ["Hip-Hop", "R&B"],
+        "year" : 2015
+    },
+    
+    {
+        "artist" : "Gunna",
+        "title" : "Dollaz On My Head",
+        "genre" : ["Hip-Hop", "Rap"],
+        "year" : 2020
+    } 
+]
