@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <title>Grace's Set List</title>
+        <link rel="stylesheet" href=https://bootswatch.com/4/journal/bootstrap.min.css>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
+    </head>
+    <style>
+        body{
+            margin: 10px;
+            background-image: url("https://coolbackgrounds.io/images/backgrounds/index/sea-edge-79ab30e2.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-weight: 600;
+            color:purple;
+            font-family:'Times New Roman', Times, serif;
+        }
+        
+        body form{
+            float: left;
+
+        }
+    
+        .card{
+            margin: auto;
+            margin-top: 30px;
+            width:30%;
+            background-color: lavender; 
+               
+        }
+
+        h1{
+            text-align: center;
+            padding-right: 350px;
+            font-family: Palatino, URW Palladio L, serif;
+            color: rgb(69, 9, 71);
+        }
+
+        .btn-primary {
+            background-color: purple;
+            width: 20%;
+            height: 30px;
+            color: white;
+            font-family:'Times New Roman', Times, serif;
+            font-size: 15px;
+            padding-bottom: 0px;
+            padding-right: 30px;
+            border-color: slateblue;
+          
+        }
+        .data{
+            padding-left: 100px;
+        }
+
+    </style>
+
+    <body>
+        <form onsubmit = "return false"> Sort by Genre Type: 
+                <select id="sort_choices"> 
+                    <option id="Default">--All Genres</option>
+                    <option id="Hip-Hop">Hip-Hop</option>
+                    <option id="Rap">Rap</option>
+                    <option id="Pop">Pop</option>
+                    <option id="Afrobeat">Afrobeat</option>
+                    <option id="Trap">Trap</option>
+                    <option id="R&B">R&B</option>
+                </select>
+
+           
+            <button type="submit" class="btn btn-primary" id="sort_button" value="Filter" >Filter</button>
+        </form>
+
+        
+
+        <script language = "javascript">
+
+            // allows user to click on filter'sort button to run sort func by genre
+            $('#sort_button').on('click', function() {
+
+                if($("#sort_choices").prop('selectedIndex') == 0)
+                {
+                    sort(0);
+                }
+                   
+                else{
+                    sort($("#sort_choices").prop('selectedIndex'));
+                }
+                    
+            });
+        </script>
+        
+        <h1>Grace's Set List Bops</h1>
+
+        <div id="playList"></div>
+
+        <script language="javascript">
+
+        // runs sort/filter func when page is ready
+        $(document).ready(sort(0));
+
+        // an array of all possible genres
+        var all_genres = ["All genres", "Hip-Hop", "Rap", "Pop", "Afrobeat", "Trap", "R&B"];
+
+        // goes through array and does a check if song is that specified genre
+        function genreType(check_genre, arr) {
+
+            if (check_genre == "All genres"){
+                return true;
+            }
+
+            for (var j = 0; j < arr.length; j++) 
+            {
+                if (check_genre == arr[j])
+                    return true;
+            }
+            
+            return false;
+        }
+
+        //sort funtion to filter through specified genre 
+        function sort(sortby) {
+            $.getJSON('https://raw.githubusercontent.com/12Grace12/COMP20/master/SetList/setList.json', function(data) 
+            {
+                data_str = JSON.stringify(data);
+                data_arr = JSON.parse(data_str);
+                data_write = "";
+                data_write += "<hr>";
+
+                // writing data into html that will later be called into a div to be populated
+                for(var i = 0; i < 10; i++) {    
+                    if (genreType(all_genres[sortby], data_arr[i].genre)) {
+                        data_write += "<div class='card'><div class='card-body'>" 
+                        data_write += "<div class='data' style='font-weight: 800; font-size: 25px;'>" + data_arr[i].title + "</div>";
+                        data_write += "<div  class='data''> Artist: " + data_arr[i].artist + "<br/>";
+                        data_write += "Genre: ";
+                        
+                        for(var k = 0; k < data_arr[i].genre.length; k++)
+                         {
+                            data_write += data_arr[i].genre[k];
+                            
+                            if(k != data_arr[i].genre.length - 1)
+                            {
+                                data_write += ", ";
+                            }     
+                        }
+                        data_write += "<br/>";
+                        data_write += "Year: " + data_arr[i].year + "</div>";
+                        data_write += "</div></div>";
+                    }
+                }
+                document.getElementById("playList").innerHTML = data_write;
+             }
+             )
+            }
+
+    </script>   
+    </body>
+</html>
