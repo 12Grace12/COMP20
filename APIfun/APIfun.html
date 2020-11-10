@@ -110,7 +110,7 @@
                 
                 var param = document.getElementById("pokeInput").value;
                 request = new XMLHttpRequest();
-                request.open('GET', 'http://pokeapi.co/api/v2/pokemon/'+param, true);
+                request.open('GET', 'https://pokeapi.co/api/v2/pokemon/'+param, true);
                 request.onload = function(data) {
                 if (request.status >= 200 && request.status < 400) {
                     response = request.responseText;
